@@ -1,0 +1,258 @@
+import React, { useState } from 'react';
+
+const VaultGuideDashboard = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [expandedSection, setExpandedSection] = useState('');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const toggleSection = (section) => {
+    if (expandedSection === section) {
+      setExpandedSection('');
+    } else {
+      setExpandedSection(section);
+    }
+  };
+
+  return (
+    <div className="flex flex-col w-full bg-gray-50">
+      {/* Header */}
+      <header className="bg-blue-700 text-white p-4">
+        <h1 className="text-2xl font-bold">Parexel Vault Clinical: Interactive Guide for iCRAs</h1>
+        <p className="text-sm mt-1">Last Updated: January 9, 2025 (Version 11.0)</p>
+      </header>
+
+      {/* Navigation Tabs */}
+      <div className="flex bg-blue-600 text-white">
+        <button 
+          className={`px-4 py-2 ${activeTab === 'overview' ? 'bg-blue-800' : ''}`}
+          onClick={() => handleTabClick('overview')}
+        >
+          Overview
+        </button>
+        <button 
+          className={`px-4 py-2 ${activeTab === 'access' ? 'bg-blue-800' : ''}`}
+          onClick={() => handleTabClick('access')}
+        >
+          System Access
+        </button>
+        <button 
+          className={`px-4 py-2 ${activeTab === 'milestones' ? 'bg-blue-800' : ''}`}
+          onClick={() => handleTabClick('milestones')}
+        >
+          Milestones
+        </button>
+        <button 
+          className={`px-4 py-2 ${activeTab === 'workflow' ? 'bg-blue-800' : ''}`}
+          onClick={() => handleTabClick('workflow')}
+        >
+          Workflow
+        </button>
+        <button 
+          className={`px-4 py-2 ${activeTab === 'resources' ? 'bg-blue-800' : ''}`}
+          onClick={() => handleTabClick('resources')}
+        >
+          Resources
+        </button>
+      </div>
+
+      {/* Content Area */}
+      <div className="p-6">
+        {/* Overview Tab Content */}
+        {activeTab === 'overview' && (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold text-blue-700 mb-4">What is Vault Clinical?</h2>
+              <p className="mb-4">Vault Clinical is Parexel's configuration of the Veeva Vault system for managing clinical trial documentation and processes.</p>
+              
+              <h3 className="text-lg font-semibold text-blue-600 mb-2">Master Milestone Sets Available:</h3>
+              <ul className="list-disc pl-6 mb-4">
+                <li className="mb-2"><span className="font-medium">eTMF + SSU:</span> Site Greenlight process</li>
+                <li className="mb-2"><span className="font-medium">Phase 2-3 (P2-3):</span> Site Greenlight process (when contracted)</li>
+                <li className="mb-2"><span className="font-medium">Observational Research (OR):</span> Site Greenlight process (when contracted)</li>
+                <li className="mb-2"><span className="font-medium">MAP:</span> Medical Affairs projects</li>
+                <li className="mb-2"><span className="font-medium">EPCU:</span> Early Phase Clinical Unit</li>
+                <li className="mb-2"><span className="font-medium">Standard Study Level Master Milestone Set (TMF):</span> FSRP process</li>
+              </ul>
+              
+              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <h3 className="text-md font-semibold text-yellow-800">Important Notes:</h3>
+                <ul className="list-disc pl-6 text-yellow-800">
+                  <li>Read all necessary guides BEFORE working in the system</li>
+                  <li>Confirm all updates are correct BEFORE proceeding</li>
+                  <li>If milestone master set shows as "not defined," contact your PL</li>
+                  <li>If your study/country is in Candidate phase, milestones will not release</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Access Tab Content */}
+        {activeTab === 'access' && (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold text-blue-700 mb-4">System Access Requirements</h2>
+              
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-blue-600 mb-2">Step 1: Vault Clinical Access</h3>
+                <ol className="list-decimal pl-6">
+                  <li className="mb-2">Complete Vault Clinical System Overview training (XFUNC-VAULTOV-EL) in LMS</li>
+                  <li className="mb-2">Complete SOP-PROJ-WW-006 Project Documentation Management in LMS</li>
+                  <li className="mb-2">Submit system access request in MSA SailPoint</li>
+                </ol>
+                <p className="bg-blue-50 p-3 rounded text-blue-800 mt-2"><strong>Note:</strong> iCRAs should have VAULT SITE MANAGER USER access.</p>
+              </div>
+              
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-blue-600 mb-2">Step 2: SIMS System Access</h3>
+                <p className="mb-2">All site personnel and centers are created and updated in SIMS for all studies using Vault Clinical.</p>
+                <ol className="list-decimal pl-6">
+                  <li className="mb-2">Complete the LMS training 'CLNWW-SIMS-UIEd'</li>
+                  <li className="mb-2">Submit My Systems Access request for SIMS 'Clin Ops User' access</li>
+                  <li className="mb-2">Ensure your site staff are added to SIMS promptly</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Milestones Tab Content */}
+        {activeTab === 'milestones' && (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold text-blue-700 mb-4">Understanding Milestones</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-blue-50 p-4 rounded">
+                  <h3 className="text-lg font-semibold text-blue-700 mb-3">Vault TMF Milestones</h3>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Site Qualification Milestone</li>
+                    <li>Site Selected Milestone</li>
+                    <li>Site SRP approved Vault SRP Process</li>
+                    <li>Site Initiation Visit/Call</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-green-50 p-4 rounded">
+                  <h3 className="text-lg font-semibold text-green-700 mb-3">eTMF + SSU / P2-3 / OR Milestones</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Site Qualification Milestone</li>
+                    <li>Site Selected Milestone</li>
+                    <li>Country Model ICF Finalized Milestone</li>
+                    <li>Country/Site IRB/EC Approval Milestones</li>
+                    <li>Contracts Ready for Greenlight</li>
+                    <li>Site Regulatory Approval Milestone</li>
+                    <li>Site Greenlight Milestone</li>
+                    <li>Site Initiated Milestone</li>
+                    <li>Site Activated Milestone</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Workflow Tab Content */}
+        {activeTab === 'workflow' && (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold text-blue-700 mb-4">Your Daily Workflow</h2>
+              
+              <div className="space-y-4">
+                <div 
+                  className="border border-blue-200 rounded p-4 cursor-pointer hover:bg-blue-50"
+                  onClick={() => toggleSection('assignTasks')}
+                >
+                  <h3 className="text-lg font-semibold text-blue-700">
+                    <span>1. Assign Site Tasks to Yourself</span>
+                    <span className="float-right">{expandedSection === 'assignTasks' ? '−' : '+'}</span>
+                  </h3>
+                  {expandedSection === 'assignTasks' && (
+                    <div className="mt-3 text-gray-700">
+                      <p className="mb-2">You are responsible for site tasks through Site Activated milestone.</p>
+                      <ul className="list-disc pl-6 mb-2">
+                        <li>Use "bulk action" to assign multiple tasks</li>
+                        <li>Complete Site Activation Checklist</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                
+                <div 
+                  className="border border-blue-200 rounded p-4 cursor-pointer hover:bg-blue-50"
+                  onClick={() => toggleSection('reviewEDL')}
+                >
+                  <h3 className="text-lg font-semibold text-blue-700">
+                    <span>2. Review EDLs (Expected Document Lists)</span>
+                    <span className="float-right">{expandedSection === 'reviewEDL' ? '−' : '+'}</span>
+                  </h3>
+                  {expandedSection === 'reviewEDL' && (
+                    <div className="mt-3 text-gray-700">
+                      <p className="mb-2">Manage EDLs for milestones up to Site Activation:</p>
+                      <ul className="list-disc pl-6 mb-2">
+                        <li>Update # Expected and Requiredness columns</li>
+                        <li>Note: # Expected automatically increases based on matching documents</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                
+                <div 
+                  className="border border-blue-200 rounded p-4 cursor-pointer hover:bg-blue-50"
+                  onClick={() => toggleSection('reviewPersonnel')}
+                >
+                  <h3 className="text-lg font-semibold text-blue-700">
+                    <span>3. Review Site Personnel Lists</span>
+                    <span className="float-right">{expandedSection === 'reviewPersonnel' ? '−' : '+'}</span>
+                  </h3>
+                  {expandedSection === 'reviewPersonnel' && (
+                    <div className="mt-3 text-gray-700">
+                      <p>Keep site staff list up to date in Vault.</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Resources Tab Content */}
+        {activeTab === 'resources' && (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold text-blue-700 mb-4">Additional Resources</h2>
+              
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-blue-600 mb-2">Guides for All Vault Clinical Studies:</h3>
+                <ul className="list-disc pl-6 mb-4">
+                  <li className="mb-2">Informed Consent Forms (ICFs) guides</li>
+                  <li className="mb-2">Study Model ICF - Author Guide</li>
+                  <li className="mb-2">Finalizing Translated ICFs</li>
+                  <li className="mb-2">Vault Clinical ICF Version Control Guidance</li>
+                  <li className="mb-2">Filing ICF Escalation Responses</li>
+                  <li className="mb-2">SSU Process Overview Diagrams</li>
+                </ul>
+              </div>
+              
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-blue-600 mb-2">Need Help?</h3>
+                <p className="mb-2">If you need assistance:</p>
+                <ol className="list-decimal pl-6">
+                  <li className="mb-2">Check the Vault Clinical Sharepoint Site</li>
+                  <li className="mb-2">Contact a super user from the Super User sharepoint site</li>
+                  <li className="mb-2">Email +CRS-iCRASuperUser@parexel.com</li>
+                  <li className="mb-2">Raise a Service Desk Ticket (07-CRS Super Users)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default VaultGuideDashboard;
